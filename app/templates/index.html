@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center;">
+    <div style="width: 600px; margin: auto;">
+        <table>
+            <form action="#" , method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <tr>
+                    <td colspan="2"><a href="{{url_for('user-interface.read_tags_in_browser')}}">Посмотреть Теги по
+                            ID</a>
+                    </td>
+                <tr>
+                    <td>{{ form.link.label }}</td>
+                    <td>{{ form.link(size=32) }}</td>
+                    {% for error in form.link.errors %}
+                    <td colspan="2"><span style="color: red;">[{{ error }}]</span>
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;padding-top: 10px;">{{ form.submit() }}</td>
+                </tr>
+            </form>
+            <tr>
+                <td colspan="2" style="text-align: center;padding-top: 10px;">{{id}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

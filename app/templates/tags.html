@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center;">
+    <div style="width: 600px; margin: auto;">
+
+        <table>
+            <tr>
+                <td colspan="2"><a href="{{url_for('user-interface.send_link_in_browser')}}">Домой</a></td>
+                <form action="#" , method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+            <tr>
+                <td>{{ form.id.label }}</td>
+                <td>{{ form.id(size=32) }}</td>
+                {% for error in form.id.errors %}
+                <td colspan="2"><span style="color: red;">[{{ error }}]</span>
+                </td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="2" style="text-align: center;padding-top: 10px;">{{ form.submit() }}</td>
+            </tr>
+            </form>
+
+            <tr>
+                <td colspan="2">{{link}}
+            </tr>
+            </td>
+            <tr>{% for tag in returned_tags %}
+            <tr>
+                <td colspan="2">{{tag}} {{returned_tags[tag]}}</td>
+            </tr>
+
+            {% endfor %}
+            </tr>
+
+
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
