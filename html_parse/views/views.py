@@ -2,11 +2,11 @@ from flask.templating import render_template
 from marshmallow import fields
 from flask_apispec import marshal_with, use_kwargs
 from flask import Blueprint, jsonify, request
-from app.schemas import LinkSchema
-from app.logic import count_tags
-from app.models import Main
-from app.forms import InputForm, TagsForm
-from app import docs
+from html_parse.schemas import LinkSchema
+from html_parse.logic.logic import count_tags
+from html_parse.models import Main
+from html_parse.forms import InputForm, TagsForm
+from html_parse import docs
 
 link_parser = Blueprint("link_parser", __name__)
 ui = Blueprint("user-interface", __name__)
@@ -80,7 +80,7 @@ def read_tags_in_browser():
                 form=tags_form,
                 tags_answer=tags_answer,
                 link=link,
-                status_code=status_code,
+                status_code=f" - HTTP-код: {status_code}",
             )
 
     return render_template(

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify
 from flask.globals import request
 from werkzeug.exceptions import HTTPException
-from app.views import ui, link_parser
+from html_parse.views.views import ui, link_parser
 
 error_handlers = Blueprint("error_handler", __name__)
 

@@ -1,4 +1,4 @@
-from app import db, Base, session
+from html_parse import db, Base, session
 
 
 class Main(Base):

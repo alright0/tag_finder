@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField
 from wtforms.fields.html5 import URLField
 from wtforms.validators import DataRequired, url
-from app.models import Main
+from html_parse.models import Main
 
 
 class InputForm(FlaskForm):
