@@ -33,7 +33,7 @@ api имеет два эндпоинта:
 Просмотр ответа сервера теми же вызовами: ``res`` и ``res.get_json()``
 <p align="center"><img width=700px src="https://user-images.githubusercontent.com/71926912/118778269-96393680-b892-11eb-9f65-5f655d921fcc.PNG" alt="client get"></p>
 
-Методы также работают и для heroku. Обращение к api heroku:<br>
+Методы также работают и для heroku. Обращение к api heroku(сайт сначала необходимо "разбудить" - перейти на него):<br>
 ``curl --header "Content-Type: application/json" --request POST -d '{"link": "https://qna.habr.com/q/639456"}' https://link-parser-git.herokuapp.com/api/send``<br>
 ``curl -X GET https://link-parser-git.herokuapp.com/api/2``<br>
 <p align="center"><img width=700px src="https://user-images.githubusercontent.com/71926912/118824587-a6690a00-b8c2-11eb-9d93-a117ea966962.PNG" alt="heroku"></p>
