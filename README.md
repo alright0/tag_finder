@@ -1,5 +1,5 @@
 # tag_finder
-Тестовое задание: поиск вложенных тегов в html странице на flask 
+Тестовое задание: поиск уникальных тегов в html странице на flask 
 
 Деплой: https://link-parser-git.herokuapp.com/
 
