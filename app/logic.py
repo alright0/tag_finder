@@ -2,12 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 
 
-def count_tags(link: str) -> dict:
+def count_tags(link: str) -> (dict, int):
     """Функция принимает ссылку и возвращает словарь, содержащий уникальные
     теги
     """
     try:
         html = requests.get(link)
+
         soup = BeautifulSoup(html.text, "html.parser")
 
         tags, counts, result = [], {}, {}
@@ -32,6 +33,6 @@ def count_tags(link: str) -> dict:
                 )
 
     except Exception as e:
-        result = dict(error=e)
+        return dict(error=str(e)), 422
 
-    return result
+    return result, html.status_code

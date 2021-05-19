@@ -17,11 +17,13 @@ ui = Blueprint("user-interface", __name__)
 @marshal_with(LinkSchema)
 def send_a_link(**kwargs):
     """API функция принимает POST запрос клиента на запись в базу"""
+    try:
+        new_record = Main(**kwargs)
+        new_record.save()
 
-    new_record = Main(**kwargs)
-    new_record.save()
-
-    return jsonify({"id": new_record.id, "link": new_record.link}), 200
+        return new_record, 200
+    except Exception as e:
+        return jsonify({"error": e}), 400
 
 
 @link_parser.route("/api/<int:link_id>", methods=["GET"])
@@ -30,9 +32,12 @@ def get_tags(link_id):
 
     try:
         answer = Main.query.filter(Main.id == link_id).first()
-        return jsonify(count_tags(answer.link)), 200
+        tags_answer, status_code = count_tags(answer.link)
+
+        return tags_answer, status_code
+
     except Exception as e:
-        return jsonify({"message": str(e)}), 400
+        return {"error": str(e)}, 400
 
 
 @ui.route("/", methods=["GET", "POST"])
@@ -60,22 +65,32 @@ def read_tags_in_browser():
     """Эта форма принимает номер записи и возвращает список уникальных тегов"""
 
     tags_form = TagsForm()
-    if request.method == "POST":
 
+    if request.method == "POST":
         if tags_form.validate_on_submit():
+
             answer = Main.query.filter(Main.id == tags_form.id.data).first()
             if answer:
-                tags_answer = dict(count_tags(answer.link))
+
+                tags_answer, status_code = count_tags(answer.link)
                 link = f"Ссылка: {answer.link}"
 
             return render_template(
-                "/tags.html", form=tags_form, returned_tags=tags_answer, link=link
+                "/tags.html",
+                form=tags_form,
+                tags_answer=tags_answer,
+                link=link,
+                status_code=status_code,
             )
 
-    return render_template("/tags.html", form=tags_form, returned_tags="", link="")
+    return render_template(
+        "/tags.html",
+        form=tags_form,
+        tags_answer="",
+        link="",
+        status_code="",
+    )
 
 
 docs.register(send_a_link, blueprint="link_parser")
 docs.register(get_tags, blueprint="link_parser")
-docs.register(send_link_in_browser, blueprint="user-interface")
-docs.register(read_tags_in_browser, blueprint="user-interface")

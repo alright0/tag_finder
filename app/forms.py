@@ -22,11 +22,12 @@ class TagsForm(FlaskForm):
         """Проверка на попадание числа в диапазон идентификаторов"""
 
         max_id = Main.query.order_by(Main.id.desc()).first()
+        min_id = Main.query.order_by(Main.id).first()
 
         if max_id is None:
             raise ValueError(f"В БД нет записей")
         else:
-            if id.data > max_id.id or id.data < 1 or not id.data:
+            if id.data > max_id.id or id.data < min_id.id or not id.data:
                 raise ValueError(
-                    f"Идентификатор должен быть в пределах от 1 до {max_id.id}"
+                    f"Идентификатор должен быть в пределах от {min_id.id} до {max_id.id}"
                 )

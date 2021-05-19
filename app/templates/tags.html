@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div style="text-align: center;">
     <div style="width: 600px; margin: auto;">
 
@@ -24,12 +25,12 @@
             </form>
 
             <tr>
-                <td colspan="2">{{link}}
+                <td colspan="2">{{link}} HTTP-Код: {{status_code}} </td>
             </tr>
             </td>
-            <tr>{% for tag in returned_tags %}
+            <tr>{% for tag in tags_answer %}
             <tr>
-                <td colspan="2">{{tag}} {{returned_tags[tag]}}</td>
+                <td colspan="2">{{tag}} {{tags_answer[tag]}}</td>
             </tr>
 
             {% endfor %}
