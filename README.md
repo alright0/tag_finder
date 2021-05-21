@@ -1,7 +1,7 @@
 # tag_finder
 Тестовое задание: поиск уникальных тегов в html странице на flask 
 
-Heroku: https://link-parser-git.herokuapp.com/
+Heroku: https://link-parser-git.herokuapp.com/ <br>
 Docker(windows): 
 1. Собрать контейнер compile_container.bat или ``docker build -t tag_parser /путь/к/папке_содержащей_Dockerfile``
 2. Запустить образ start_docker.bat или ``docker run -d -p 5000:5000 tag_parser``
