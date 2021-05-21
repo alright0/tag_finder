@@ -48,6 +48,7 @@ api имеет два эндпоинта:
 <p align="center"><img width=700px src="https://user-images.githubusercontent.com/71926912/118781161-6b041680-b895-11eb-9081-fe53fa7735a0.PNG" alt="internal error"></p>
 
 <b>Дополнительно</b><br>
+<b>Реализация docker файла для запуска</b><br>
 <b>Реализация UI для сервиса</b><br>
 <b>Генерация документации для созданных методов</b><br> 
 
